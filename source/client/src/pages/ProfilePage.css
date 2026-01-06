@@ -1,0 +1,377 @@
+@import '../styles/theme.css';
+
+.profile-page {
+  min-height: 100vh;
+  background: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-header {
+  background: var(--primary-gradient);
+  color: var(--text-light);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.profile-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn {
+  padding: 0.625rem 1.25rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all var(--transition-base);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.profile-content {
+  flex: 1;
+  max-width: 1200px; /* Tăng từ 800px lên 1200px để form rộng hơn */
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.profile-card {
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-base);
+}
+
+.form-group:hover {
+  border-color: rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.form-group label {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.form-group input,
+.form-group select {
+  padding: 1rem 1.25rem;
+  border: 2px solid #d1d5db;
+  border-radius: var(--border-radius-sm);
+  background: #ffffff;
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all var(--transition-base);
+  width: 100%;
+  font-family: inherit;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Thêm mũi tên xuống cho select */
+.form-group select {
+  padding-right: 3rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23374151' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+  cursor: pointer;
+}
+
+.form-group input:hover:not(:disabled):not(.disabled-input),
+.form-group select:hover:not(:disabled) {
+  border-color: #9ca3af;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #ffffff;
+  box-shadow: 
+    0 0 0 4px rgba(102, 126, 234, 0.15),
+    0 4px 12px rgba(102, 126, 234, 0.2);
+  transform: translateY(-1px);
+}
+
+.form-group input.disabled-input {
+  background: #f3f4f6;
+  color: #6b7280;
+  cursor: not-allowed;
+  opacity: 0.8;
+  border-color: #e5e7eb;
+  box-shadow: none;
+}
+
+.form-group input.disabled-input:hover {
+  border-color: #e5e7eb;
+  box-shadow: none;
+  transform: none;
+}
+
+.form-group small {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+.form-row {
+  display: grid;
+  gap: var(--spacing-lg);
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+/* Hàng đầu: Tên đăng nhập + Vai trò (2 cột bằng nhau) */
+.profile-form > .form-row:first-of-type {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Hàng thứ hai: Họ tên + Số điện thoại (2 cột bằng nhau) */
+.profile-form > .form-row:nth-of-type(2) {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Hàng thứ ba: Giới tính + Ngày sinh + Tuổi (3 cột bằng nhau) */
+.profile-form > .form-row:nth-of-type(3) {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.form-row .form-group {
+  margin: 0;
+}
+
+.password-section {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: rgba(102, 126, 234, 0.05);
+  border-radius: var(--border-radius);
+  border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.password-section .form-group {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+/* PasswordInput styling trong ProfilePage */
+.profile-page .password-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: var(--spacing-md);
+  background: #ffffff;
+  border-radius: var(--border-radius);
+  border: 1px solid #e5e7eb;
+  transition: all var(--transition-base);
+}
+
+.profile-page .password-input-group:hover {
+  border-color: rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.profile-page .password-label {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  text-transform: none;
+  margin-bottom: 0.25rem;
+}
+
+.profile-page .password-input-field {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  padding-right: 3.5rem;
+  border: 2px solid #d1d5db;
+  border-radius: var(--border-radius-sm);
+  background: #ffffff;
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all var(--transition-base);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.profile-page .password-input-field::placeholder {
+  color: #9ca3af;
+}
+
+.profile-page .password-input-field:hover {
+  border-color: #9ca3af;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.profile-page .password-input-field:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #ffffff;
+  box-shadow: 
+    0 0 0 4px rgba(102, 126, 234, 0.15),
+    0 4px 12px rgba(102, 126, 234, 0.2);
+  transform: translateY(-1px);
+}
+
+.profile-page .password-toggle-btn {
+  color: #6b7280;
+  right: 0.75rem;
+}
+
+.profile-page .password-toggle-btn:hover {
+  color: var(--primary);
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.password-section h3 {
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+}
+
+.section-description {
+  margin: 0 0 var(--spacing-md) 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border-color);
+  justify-content: flex-end;
+}
+
+/* Đảm bảo cả hai button có cùng height và alignment */
+.form-actions .submit-btn,
+.form-actions .cancel-btn {
+  padding: 0.75rem 2rem !important;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: all var(--transition-base);
+  box-sizing: border-box !important;
+  height: 44px !important; /* Cùng height cố định */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.submit-btn {
+  background: var(--primary-gradient);
+  color: white;
+  border: 2px solid transparent !important; /* Border transparent để đồng bộ */
+  box-shadow: var(--shadow-sm);
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cancel-btn {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color) !important;
+}
+
+.cancel-btn:hover {
+  background: var(--bg-primary);
+  border-color: var(--primary);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+/* Tablet: 2 cột */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .form-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 cột */
+@media (max-width: 768px) {
+  .profile-content {
+    padding: var(--spacing-md);
+  }
+
+  .profile-card {
+    padding: var(--spacing-lg);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}
+
